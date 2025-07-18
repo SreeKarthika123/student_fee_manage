@@ -1,0 +1,88 @@
+.signup-wrapper {
+  height: 100vh;
+  overflow-y: auto;
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+  position: relative;
+}
+
+/* Scrollbar styling */
+.signup-wrapper::-webkit-scrollbar {
+  width: 8px;
+}
+.signup-wrapper::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+.signup-wrapper::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Form styling */
+.signup-form {
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+}
+
+/* Stars */
+.star {
+  position: fixed;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  animation: twinkle 2s infinite alternate;
+  z-index: 0;
+}
+@keyframes twinkle {
+  0% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Balls */
+.ball {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  animation: float 4s ease-in-out infinite alternate;
+  z-index: 0;
+}
+@keyframes float {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    transform: translateY(-30px) scale(1.2);
+  }
+}
+
+/* Shooting stars */
+.shooting-star {
+  position: fixed;
+  width: 100px;
+  height: 2px;
+  background: linear-gradient(90deg, white, transparent);
+  opacity: 0.7;
+  animation: shootAcross 2s linear infinite;
+  z-index: 0;
+}
+@keyframes shootAcross {
+  0% {
+    transform: translateX(0) translateY(0) rotate(30deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(120vw) translateY(-100px) rotate(30deg);
+    opacity: 0;
+  }
+}
