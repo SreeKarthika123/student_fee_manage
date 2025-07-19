@@ -250,21 +250,38 @@ import axios from "axios";
 export default function Dashboard() {
   const [user, setUser] = useState({});
   const navigate = useNavigate();
+  const API_URL = process.env.REACT_APP_API_URL || "";
 
-  useEffect(() => {
-    axios
-      .get("http://localhost:5000/api/student/me", {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-      })
-      .then((res) => setUser(res.data))
-      .catch(() => {
-        alert("Session expired. Please login again.");
-        localStorage.removeItem("token");
-        navigate("/");
-      });
-  }, [navigate]);
+useEffect(() => {
+  axios
+    .get(`${API_URL}/api/student/me`, {
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
+    .then((res) => setUser(res.data))
+    .catch(() => {
+      alert("Session expired. Please login again.");
+      localStorage.removeItem("token");
+      navigate("/");
+    });
+}, [navigate]);
+
+
+  // useEffect(() => {
+  //   axios
+  //     .get("http://localhost:5000/api/student/me", {
+  //       headers: {
+  //         Authorization: "Bearer " + localStorage.getItem("token"),
+  //       },
+  //     })
+  //     .then((res) => setUser(res.data))
+  //     .catch(() => {
+  //       alert("Session expired. Please login again.");
+  //       localStorage.removeItem("token");
+  //       navigate("/");
+  //     });
+  // }, [navigate]);
 
   // Copy animated background from Signup
   useEffect(() => {

@@ -306,25 +306,46 @@ export default function Login() {
       setTimeout(() => setModalVisible(false), 1000);
       return;
     }
+    const API_URL = process.env.REACT_APP_API_URL || "";
 
-    try {
-      const res = await axios.post("http://localhost:5000/api/auth/login", {
-        email,
-        password,
-      });
-      localStorage.setItem("token", res.data.token);
-      setModalMessage("✅ Login successful!");
-      setModalVisible(true);
-      setTimeout(() => {
-        setModalVisible(false);
-        navigate("/dashboard");
-      }, 1500);
-    } catch (err) {
-      const msg = err.response?.data?.message || "Login failed. Try again.";
-      setModalMessage("❌ " + msg);
-      setModalVisible(true);
-      setTimeout(() => setModalVisible(false), 2500);
-    }
+try {
+  const res = await axios.post(`${API_URL}/api/auth/login`, {
+    email,
+    password,
+  });
+  localStorage.setItem("token", res.data.token);
+  setModalMessage("✅ Login successful!");
+  setModalVisible(true);
+  setTimeout(() => {
+    setModalVisible(false);
+    navigate("/dashboard");
+  }, 1500);
+} catch (err) {
+  const msg = err.response?.data?.message || "Login failed. Try again.";
+  setModalMessage("❌ " + msg);
+  setModalVisible(true);
+  setTimeout(() => setModalVisible(false), 2500);
+}
+
+
+    // try {
+    //   const res = await axios.post("http://localhost:5000/api/auth/login", {
+    //     email,
+    //     password,
+    //   });
+    //   localStorage.setItem("token", res.data.token);
+    //   setModalMessage("✅ Login successful!");
+    //   setModalVisible(true);
+    //   setTimeout(() => {
+    //     setModalVisible(false);
+    //     navigate("/dashboard");
+    //   }, 1500);
+    // } catch (err) {
+    //   const msg = err.response?.data?.message || "Login failed. Try again.";
+    //   setModalMessage("❌ " + msg);
+    //   setModalVisible(true);
+    //   setTimeout(() => setModalVisible(false), 2500);
+    // }
   };
 
   return (

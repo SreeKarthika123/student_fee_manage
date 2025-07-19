@@ -331,17 +331,30 @@ export default function PayFees() {
       toast.error("Please enter a valid amount.");
       return;
     }
+    const API_URL = process.env.REACT_APP_API_URL;
 
-    try {
-      const res = await axios.post(
-        "http://localhost:5000/api/student/pay",
-        { method, amount },
-        {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("token"),
-          },
-        }
-      );
+try {
+  const res = await axios.post(
+    `${API_URL}/api/student/pay`,
+    { method, amount },
+    {
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    }
+  );
+
+
+    // try {
+    //   const res = await axios.post(
+    //     "http://localhost:5000/api/student/pay",
+    //     { method, amount },
+    //     {
+    //       headers: {
+    //         Authorization: "Bearer " + localStorage.getItem("token"),
+    //       },
+    //     }
+    //   );
 
       toast.success("🎉 Payment Successful!");
       setTimeout(() => {

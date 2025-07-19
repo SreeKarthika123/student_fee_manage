@@ -306,26 +306,49 @@ useEffect(() => {
     setTimeout(() => setModalVisible(false), 2500);
     return;
   }
-    try {
-      await axios.post("http://localhost:5000/api/auth/signup", {
-        name,
-        email,
-        password,
-      });
-      setModalMessage("✅ Signup successful!");
-      setModalVisible(true);
-      setShowBoomer(true);
+  const API_URL = process.env.REACT_APP_API_URL;
 
-      setTimeout(() => {
-        setModalVisible(false);
-        navigate("/signin");
-      }, 2000);
-    } catch (err) {
-      const msg = err.response?.data?.message || "Signup failed. Try again.";
-      setModalMessage("❌ " + msg);
-      setModalVisible(true);
-      setTimeout(() => setModalVisible(false), 2500);
-    }
+try {
+  await axios.post(`${API_URL}/api/auth/signup`, {
+    name,
+    email,
+    password,
+  });
+  setModalMessage("✅ Signup successful!");
+  setModalVisible(true);
+  setShowBoomer(true);
+
+  setTimeout(() => {
+    setModalVisible(false);
+    navigate("/signin");
+  }, 2000);
+} catch (err) {
+  const msg = err.response?.data?.message || "Signup failed. Try again.";
+  setModalMessage("❌ " + msg);
+  setModalVisible(true);
+  setTimeout(() => setModalVisible(false), 2500);
+}
+
+    // try {
+    //   await axios.post("http://localhost:5000/api/auth/signup", {
+    //     name,
+    //     email,
+    //     password,
+    //   });
+    //   setModalMessage("✅ Signup successful!");
+    //   setModalVisible(true);
+    //   setShowBoomer(true);
+
+    //   setTimeout(() => {
+    //     setModalVisible(false);
+    //     navigate("/signin");
+    //   }, 2000);
+    // } catch (err) {
+    //   const msg = err.response?.data?.message || "Signup failed. Try again.";
+    //   setModalMessage("❌ " + msg);
+    //   setModalVisible(true);
+    //   setTimeout(() => setModalVisible(false), 2500);
+    // }
   };
 
   return (

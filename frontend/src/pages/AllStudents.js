@@ -84,12 +84,19 @@ import "./AllStudents.css";
 
 export default function AllStudents() {
   const [students, setStudents] = useState([]);
+const API_URL = process.env.REACT_APP_API_URL || "";
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/student/all")
-      .then((res) => setStudents(res.data));
+      .get(`${API_URL}/api/student/all`)
+      .then((res) => setStudents(res.data))
+      .catch((err) => console.error("Error fetching students:", err));
   }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get("http://localhost:5000/api/student/all")
+  //     .then((res) => setStudents(res.data));
+  // }, []);
 
   // Star background effect
   useEffect(() => {

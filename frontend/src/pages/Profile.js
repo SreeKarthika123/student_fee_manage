@@ -594,25 +594,54 @@ export default function Profile() {
   const [showBoomer] = useState(false);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
+  const API_URL = process.env.REACT_APP_API_URL;
 
-    axios
-      .get("http://localhost:5000/api/student/me", {
-        headers: { Authorization: "Bearer " + token },
-      })
-      .then((res) => {
-        setUser(res.data);
-        setName(res.data.name);
-        setEmail(res.data.email);
-      });
+useEffect(() => {
+  const token = localStorage.getItem("token");
 
-    axios
-      .get("http://localhost:5000/api/student/payments", {
-        headers: { Authorization: "Bearer " + token },
-      })
-      .then((res) => setPayments(res.data));
-  }, []);
+  axios
+    .get(`${API_URL}/api/student/me`, {
+      headers: { Authorization: "Bearer " + token },
+    })
+    .then((res) => {
+      setUser(res.data);
+      setName(res.data.name);
+      setEmail(res.data.email);
+    })
+    .catch((err) => {
+      console.error("Error fetching user details:", err);
+    });
+
+  axios
+    .get(`${API_URL}/api/student/payments`, {
+      headers: { Authorization: "Bearer " + token },
+    })
+    .then((res) => setPayments(res.data))
+    .catch((err) => {
+      console.error("Error fetching payments:", err);
+    });
+}, []);
+
+
+  // useEffect(() => {
+  //   const token = localStorage.getItem("token");
+
+  //   axios
+  //     .get("http://localhost:5000/api/student/me", {
+  //       headers: { Authorization: "Bearer " + token },
+  //     })
+  //     .then((res) => {
+  //       setUser(res.data);
+  //       setName(res.data.name);
+  //       setEmail(res.data.email);
+  //     });
+
+  //   axios
+  //     .get("http://localhost:5000/api/student/payments", {
+  //       headers: { Authorization: "Bearer " + token },
+  //     })
+  //     .then((res) => setPayments(res.data));
+  // }, []);
 
   // STAR + BALL background logic
   useEffect(() => {
