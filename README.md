@@ -1,7 +1,6 @@
 Student Fee Management System
 
 
-Overview
 A full-stack web application where students can log in, view/update their profile, and mark their fee payment status.
 The system includes a mock payment simulation with options like UPI, Transaction ID, and Net Banking.
 
@@ -38,7 +37,9 @@ Status is reflected in both Profile and All Students pages.
 Tech Stack
 Backend: Node.js, Express, MongoDB.
 
-Frontend: React (responsive design).
+Frontend: React (responsive design) , Java Script.
+
+
 Setup
 1. Clone Repo
 cd student-fee-management
