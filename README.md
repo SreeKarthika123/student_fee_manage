@@ -1,24 +1,42 @@
 Student Fee Management System
+
+
 Overview
-A full-stack web app where students can log in, view/update their profile, and mark their fee payment status.
-Includes mock payment simulation (UPI, Transaction ID, Net Banking).
+A full-stack web application where students can log in, view/update their profile, and mark their fee payment status.
+The system includes a mock payment simulation with options like UPI, Transaction ID, and Net Banking.
 
 Features
-Navigation Bar with All Students and Profile tabs.
+Navigation Bar
+Contains All Students and Profile tabs.
 
-All Students Page: Lists all students with Name, Email, and Fees Paid (Yes/No).
+All Students Page
+Displays a list of students with:
 
-Profile Page:
+Name
 
-Login/signup with JWT authentication.
+Email
 
-View and edit name/email.
+Fees Paid Status (Yes/No)
 
-Pay fees (mock payment with UPI ID or Transaction ID).
+When a student pays their fees from the Profile page, the status is updated here automatically.
 
-Status updates reflect across pages.
+Profile Page
+Login/Signup with JWT-based authentication.
 
-Backend: Node.js + Express + MongoDB.
+View and edit Name and Email.
+
+View current Fee Payment Status.
+
+Pay Fees Button (shown if fees are not paid):
+
+Opens a mock payment page to fill in details (UPI ID, Transaction ID, Net Banking).
+
+On clicking "Pay Now", payment is simulated, and the status updates to Yes.
+
+Status is reflected in both Profile and All Students pages.
+
+Tech Stack
+Backend: Node.js, Express, MongoDB.
 
 Frontend: React (responsive design).
 Setup
